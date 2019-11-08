@@ -22,21 +22,21 @@ Is used the 3 layer architecture where there is openned and closed layers, beein
   
 This project utilizes ArchUnit to integrity of the architecture. (default-api/test/java/br.com.project/ArchTest.java) 
   
-##Project setup
+## Project setup
 
 This version of the boilerplate needs the maven to run, and need to have one jdk that is compatible (preferably openjdk13)
 
-###Compile
+### Compile
 ```
 mvn install
 ```
 
-###Run only tests
+### Run only tests
 ```
 mvn tests
 ```
 
-###Start project
+### Start project
 ```
 mvn spring-boot:run
 ```
