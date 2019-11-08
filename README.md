@@ -38,6 +38,7 @@ mvn tests
 
 ### Start project
 ```
+cd default-api
 mvn spring-boot:run
 ```
 
