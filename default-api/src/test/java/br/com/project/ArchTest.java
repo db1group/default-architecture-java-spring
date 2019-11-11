@@ -44,6 +44,34 @@ public class ArchTest {
     }
 
     @Test
+    public void should_validate_config_package_naming() {
+        ArchRule rule = ArchRuleDefinition.classes().that().haveSimpleNameEndingWith("Configuration").should()
+                .resideInAPackage(PACKAGE + ".config");
+        rule.check(importedClasses);
+    }
+
+    @Test
+    public void should_validate_converter_package_naming() {
+        ArchRule rule = ArchRuleDefinition.classes().that().haveSimpleNameEndingWith("Converter").should()
+                .resideInAPackage(PACKAGE + ".converter");
+        rule.check(importedClasses);
+    }
+
+    @Test
+    public void should_validate_filter_package_naming() {
+        ArchRule rule = ArchRuleDefinition.classes().that().haveSimpleNameEndingWith("Filter").should()
+                .resideInAPackage(PACKAGE + ".filter");
+        rule.check(importedClasses);
+    }
+
+    @Test
+    public void should_validate_exception_package_naming() {
+        ArchRule rule = ArchRuleDefinition.classes().that().haveSimpleNameEndingWith("Exception").should()
+                .resideInAPackage(PACKAGE + ".exception");
+        rule.check(importedClasses);
+    }
+
+    @Test
     public void should_validate_layered_architecture() {
         Architectures.LayeredArchitecture layeredArchitecture = Architectures.layeredArchitecture()
                 .layer("Controller").definedBy("..resource..")
@@ -52,12 +80,17 @@ public class ArchTest {
                 .layer("Entity").definedBy("..entity..")
                 .layer("DTO").definedBy("..domain..")
                 .layer("Adapter").definedBy("..adapter..")
+                .layer("Config").definedBy("..config..")
+                .layer("Security").definedBy("..security..")
+                .layer("Converter").definedBy("..converter..")
 
                 .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
                 .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller")
                 .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service")
                 .whereLayer("Entity").mayOnlyBeAccessedByLayers("Controller", "Repository", "Service", "Adapter")
-                .whereLayer("DTO").mayOnlyBeAccessedByLayers("Repository", "Service", "Controller", "Adapter");
+                .whereLayer("DTO").mayOnlyBeAccessedByLayers("Repository", "Service", "Controller", "Adapter")
+                .whereLayer("Config").mayNotBeAccessedByAnyLayer()
+                .whereLayer("Security").mayOnlyBeAccessedByLayers("Config", "Converter");
         layeredArchitecture.check(importedClasses);
     }
 }
