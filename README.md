@@ -6,9 +6,11 @@ Project Stack:
 
  * [Java 13](https://www.oracle.com/technetwork/java/13-relnote-issues-5460548.html)
  * [Spring 2.2.0](https://spring.io)
- * [ArchUnit 0.12.0](https://www.archunit.org/userguide/html/000_Index.html)
  * [Maven](https://maven.apache.org/)
  * [H2 Database 1.4.99](https://www.h2database.com/html/main.html) - Removable
+ * [Keycloak](https://www.keycloak.org/)
+ * [Postgres TestContainer 1.12.3](https://www.testcontainers.org/)
+ * [ArchUnit 0.12.0](https://www.archunit.org/userguide/html/000_Index.html)
  
 ## Architecture explanation
 
